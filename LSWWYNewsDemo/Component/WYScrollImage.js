@@ -20,7 +20,7 @@ export default class WYScrollImage extends Component{
   render(){
     return(
       <View>
-        <Swiper style={styles.wrapper} height={140} horizontal={false} autoplay={true}>
+        <Swiper height={140} horizontal={true} autoplay={true}>
           {this.renderItem()}
         </Swiper>
       </View>
@@ -30,7 +30,7 @@ export default class WYScrollImage extends Component{
   // 返回每一帧的页面
   renderItem(){
     // 1.取出数组数据
-    var imgArr = this.props.adImgArr;
+    var imgArr = this.props.addImgArr;
     // 2.定义组件数组
     var itemArr = [];
     // 3.遍历数据数组

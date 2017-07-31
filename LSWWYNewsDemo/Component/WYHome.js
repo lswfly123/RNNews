@@ -8,7 +8,8 @@ import {
   View,
   ListView,
   Image,
-  TouchableOpacity
+  TouchableOpacity, 
+    Navigator
 }from 'react-native';
 
 // 导入外部的文件
@@ -32,8 +33,8 @@ export default class WYHome extends Component{
     return(
       <ListView
         dataSource={this.state.dataSource}
-        renderHeader={this.renderHeader}
-        renderRow={this.renderRow}
+        renderHeader={this.renderHeader.bind(this)}
+        renderRow={this.renderRow.bind(this)}
       />
     )
   }
@@ -80,7 +81,9 @@ export default class WYHome extends Component{
     this.props.navigator.push({
       title:'详情页',
       component:NewsDetail,
-      passProps:{docid}
+      passProps:{
+          name:'hello'
+      }
     })
   }
 
