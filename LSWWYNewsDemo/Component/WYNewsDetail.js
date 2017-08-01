@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   View,
-  WebView
+  WebView,
+    Navigator
 } from 'react-native';
 
 // 组件类
@@ -24,14 +25,17 @@ export default class WYNewsDetail extends Component{
 
   render(){
     return(
-      <WebView
-        automaticallyAdjustContentInsets={true}
-        source={{html:this.state.htmlString,baseUrl:''}}
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-        decelerationRate="normal"
-        startInLoadingState={true}
-      />
+        <Text>
+            {this.props.name}
+        </Text>
+      // <WebView
+      //   automaticallyAdjustContentInsets={true}
+      //   source={{html:this.state.htmlString,baseUrl:''}}
+      //   javaScriptEnabled={true}
+      //   domStorageEnabled={true}
+      //   decelerationRate="normal"
+      //   startInLoadingState={true}
+      // />
     )
   }
 
@@ -39,7 +43,9 @@ export default class WYNewsDetail extends Component{
 
     var docid = this.props.docid;
     // 请求路径的拼接
+
     var url_api = 'http://c.m.163.com/nc/article/'+this.props.docid+'/full.html';
+      console.log(url_api,this.props.docid);
     fetch(url_api)
       .then((response)=>response.json())
       .then((responseData)=>{
@@ -74,7 +80,10 @@ export default class WYNewsDetail extends Component{
   }
 }
 
-
+// WYNewsDetail.defaultProps = {
+//
+//     docid:this.props
+// }
 // 样式类
 const styles = StyleSheet.create({
   outViewStyle:{
