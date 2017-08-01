@@ -13,13 +13,15 @@ import {
 
 // 导入外部的文件
 var ScrollImg = require('./WYScrollImage');
-var NewsDetail = require('./WYNewsDetail');
+// var NewsDetail = require('./WYNewsDetail');
+import NewsDetail from './WYNewsDetail'
 // 组件类
 export default class WYHome extends Component{
 
   // 构造
     constructor(props) {
       super(props);
+      var title = 'helloworld'
       var ds = new ListView.DataSource({rowHasChanged:(r1,r2)=>r1!==r2})
       // 初始状态
       this.state = {
@@ -32,8 +34,8 @@ export default class WYHome extends Component{
     return(
       <ListView
         dataSource={this.state.dataSource}
-        renderHeader={this.renderHeader}
-        renderRow={this.renderRow}
+        renderHeader={this.renderHeader.bind(this)}
+        renderRow={this.renderRow.bind(this)}
       />
     )
   }
@@ -44,7 +46,7 @@ export default class WYHome extends Component{
     if (this.state.adImage.length === 0) return;
 
     return(
-      <ScrollImg addImgArr={this.state.adImage}/>
+      <ScrollImg adImgArr={this.state.adImage}/>
     )
   }
 
@@ -80,11 +82,12 @@ export default class WYHome extends Component{
     this.props.navigator.push({
       title:'详情页',
       component:NewsDetail,
-      passProps:{docid}
+      params:{
+        docid:docid,
+      }
     })
   }
-
-  // 耗时操作
+  // 耗时操作Z
   componentDidMount() {
     // 请求网络数据
     this.loadNetData()
@@ -131,7 +134,8 @@ export default class WYHome extends Component{
 WYHome.defaultProps={
 
    url_api:'http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html?from=toutiao&fn=1&prog=LTitleA&passport=&devId=nTM86EPlcxZu09VdpTEh6aR3%2B%2FQX6x8vHBD3ne3k5bbgOrg%2FIP5DcguSDmtYyWbs&offset=0&size=20&version=14.0&spever=false&net=wifi&lat=DUH4Hf95lyIDaAI03C3RSA%3D%3D&lon=HJ4tj6FL5wRHQxcf5GLEcg%3D%3D&ts=1470728804&sign=1H8K3yy9bMXakmxAlZ9P86meraJtjKQFz5vJuwhjNyl48ErR02zJ6%2FKXOnxX046I&encryption=1&canal=appstore',
-    keyWord: 'T1348647853363'
+    keyWord: 'T1348647853363',
+    title:'helloworld'
 }
 
 const styles = StyleSheet.create({

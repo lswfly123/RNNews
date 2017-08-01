@@ -20,7 +20,7 @@ export default class WYScrollImage extends Component{
   render(){
     return(
       <View>
-        <Swiper style={styles.wrapper} height={140} horizontal={false} autoplay={true}>
+        <Swiper style={styles.wrapper} height={140} horizontal={true} autoplay={true}>
           {this.renderItem()}
         </Swiper>
       </View>

@@ -41,7 +41,12 @@ export default class WYMain extends Component{
           onPress={() => this.setState({ selectedTab: 'home' })}>
           <Navigator
             // 初始化路由
-            initialRoute={{name:'home',component:Home}}
+            initialRoute={{
+                           name:'home',
+                           params:{
+                               docid:'1234567',
+                                },
+                           component:Home}}
             // 界面之间过渡的动画效果
             configureScence={(route)=>{
                 return Navigator.SceneConfigs.PushFromRight;
@@ -49,7 +54,7 @@ export default class WYMain extends Component{
             // 把路由中的版块生成一个模块
             renderScene={(route,navigator)=>{
                 let Component = route.component;
-                return <Component {...route.props} navigator={navigator}/>
+                return <Component {...route.params} navigator={navigator}/>
             }}
           />
         </TabNavigator.Item>

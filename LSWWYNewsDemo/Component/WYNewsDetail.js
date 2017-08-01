@@ -17,6 +17,7 @@ export default class WYNewsDetail extends Component{
       super(props);
       // 初始状态
       this.state = {
+
         htmlString:'<img src="http://img.51ztzj.com/upload/image/20150317/sj201503171007_279x419.jpg" width="100%" height="100%">'
       };
     }
@@ -35,15 +36,18 @@ export default class WYNewsDetail extends Component{
   }
 
   componentDidMount() {
+
+    var docid = this.props.docid;
     // 请求路径的拼接
     var url_api = 'http://c.m.163.com/nc/article/'+this.props.docid+'/full.html';
     fetch(url_api)
-      .then((response)=>response.json)
+      .then((response)=>response.json())
       .then((responseData)=>{
         console.log(responseData);
 
+        alert(url_api);
         // 1. 取出所有的数据
-        var allData = responseData[this.props.docid];
+        var allData = responseData[docid];
         // 2. 取出body中的数据
         var body = allData['body'];
         // 3. 取出图片数组
@@ -80,7 +84,3 @@ const styles = StyleSheet.create({
     backgroundColor:'blue'
   }
 });
-
-
-// 模块输出
-module.exports = WYNewsDetail;
